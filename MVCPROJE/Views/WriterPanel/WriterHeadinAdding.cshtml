@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.Heading
+@{
+    ViewBag.Title = "WriterHeadinAdding";
+    Layout = "~/Views/Shared/_WriterPanel.cshtml";
+}
+
+
+@using (Html.BeginForm("WriterHeadinAdding", "WriterPanel", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.Label("Başlık Adı")
+        @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })
+
+        @Html.Label("Başlık Tarihi")
+        <br />
+        @Html.TextBoxFor(x => x.HeadingDate, new { @class = "form-control" })
+        <br />
+        <input type="file" name="Resim" />
+
+        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.Writer)
+        <button class="btn btn-primary" type="submit" value="Güncelle">Güncelle</button>
+    </div>
+}
+

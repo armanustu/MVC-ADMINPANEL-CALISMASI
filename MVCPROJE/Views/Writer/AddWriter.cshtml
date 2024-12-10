@@ -1,0 +1,71 @@
+﻿@model EntityLayer.Concrete.Writer
+@{
+    ViewBag.Title = "AddWriter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>AddWriter</h2>
+@using (Html.BeginForm("AddWriter", "Writer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="form-group">
+        @Html.Label("Yazar Adı Giriniz")
+        @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterName)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Yazar Soyad Giriniz")
+        @Html.TextBoxFor(x => x.WriterSurname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterSurname)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Yazar Hakkında Giriniz")
+        @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterAbout)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Yazar Mail Adresi Giriniz")
+        @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterMail)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Yazar Şifre Giriniz")
+        @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterPassword)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Başlık Giriniz")
+        @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WriterTitle)
+    </div>
+    <div class="form-group">
+        <input type="file" name="ImageFile" required />
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Kaydet" class="btn btn-primary" />
+        </div>
+    </div>
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if (ViewBag.Status == true)
+{
+    <script>
+        swal({
+            title: "Bilgi",
+            text: "Kaydet İşlemi başarılı",
+            icon: "success",
+            buttons: "Tamam"
+        })
+        setTimeout(yonlendir, 3000);
+        function yonlendir() {
+            location.assign("/Writer/Index");
+        }
+    </script>
+}

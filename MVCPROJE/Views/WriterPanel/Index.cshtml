@@ -1,0 +1,115 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Heading>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_WriterPanel.cshtml";
+}
+
+<body class="hold-transition sidebar-mini">
+
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Başlıklar</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                ID
+                            </th>
+                            <th style="width: 20%">
+                                Başlık Adı
+                            </th>
+                            <th style="width: 10%">
+                                Tarih
+                            </th>
+                            <th style="width: 8%" class="text-center">
+                                Kategori
+                            </th>
+                            <th style="width: 5%">
+                                Resim
+                            </th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach (var item in Model)
+                        {
+
+
+                            <tr>
+
+
+                                <td>
+                                    @item.HeadingID
+                                </td>
+                                <td>
+                                    @item.HeadingName
+                                </td>
+                                <td>
+                                    <a>
+                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                    </a>
+
+                                </td>
+                                <td class="project-state">
+                                    <span class="badge badge-warning">@item.Category.CategoryName</span>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img src="~/MvcProjeKampiTema-main/MvcProjeKampiTema-main/Mvc Proje Kampı Tema/AdminLTE-3.0.4/dist/img/avatar.png" style="width:50px;height:50px" />
+
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>@item.HeadingStatus</td>
+                                @*<td class="project-state">
+                                        <span class="badge badge-success">Success</span>
+                                    </td>*@
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/WriterPanel/WriterProfile/@item.HeadingID">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                       Yazara ait başlık
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="/WriterPanel/WriterHeadingEditing/@item.HeadingID">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Düzenle
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="/WriterPanel/WriterHeadingDelete/@item.HeadingID">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+
+
+</body>
+<a href="/Heading/AddHeading" class="btn btn-primary">Yeni başlık ekle</a>
+

@@ -1,0 +1,51 @@
+﻿@model EntityLayer.Concrete.Heading
+@{
+    ViewBag.Title = "EditHeading";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>EditHeading</h2>
+@using (Html.BeginForm("EditHeading", "Heading", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.HeadingID)
+        @Html.Label("Başlık Adı")
+        @Html.TextBoxFor(x => x.HeadingName, new { @class = "form-control" })
+
+        @Html.Label("Başlık Tarihi")
+        <br />
+        @Html.TextBoxFor(x => x.HeadingDate, new { @class = "form-control" })
+        <br />
+        @Html.Label("Yazar Seçiniz")
+        @Html.DropDownListFor(x => x.WriterID, (List<SelectListItem>)ViewBag.Writer)
+        <br />
+        @Html.Label("Kategori Seçiniz")
+        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.Category)
+        <div class="form-group">
+            @Html.Label("Durum")
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(model => model.HeadingStatus)
+                    @Html.ValidationMessageFor(model => model.HeadingStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" value="Güncelle">Güncelle</button>
+    </div>
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if (ViewBag.Status == true)
+{
+    <script>
+        swal({
+            title: "Bilgi",
+            text: "Günceleme İşlemi başarılı",
+            icon: "success",
+            buttons: "Tamam"
+        })
+        setTimeout(yonlendir, 3000);
+        function yonlendir() {
+            location.assign("/Heading/Index");
+        }
+    </script>
+}

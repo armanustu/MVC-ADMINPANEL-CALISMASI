@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Admin>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>Admin Yetkilendirme</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>AdminID</th>
+        <th>Admin Ad</th>
+        <th>Admin Password</th>
+        <th>Admin Role</th>
+        <th>Durum</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+      
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.AdminID</td>
+            <td>@item.AdminName</td>
+            <td>@item.AdminPassword</td>
+            <td>@item.AdminRole</td>
+            <td>@item.Adminstatus</td>
+            <td><a href="/Authorization/AdminDelete/@item.AdminID" class="btn btn-danger">Pasif Yap</a></td>
+            <td><a href="/Authorization/UpdateAdmin/@item.AdminID" class="btn btn-warning">Güncelle</a></td>
+
+
+        </tr>
+    }
+</table>
+<a href="/Authorization/AddAdmin" class="btn btn-info">Yeni Kategori</a>
+

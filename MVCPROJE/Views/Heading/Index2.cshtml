@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Heading>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Baslık</th>
+        <th>Tarih</th>
+        <th> Categori Adı</th>
+        <th>Yazar Adı</th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.HeadingID</td>
+            <td>@item.HeadingName</td>
+            <td>@item.HeadingDate</td>
+            <td>@item.Category.CategoryName</td>
+            <td>@item.Writer.WriterName</td>
+            <td><a href="/Writer/WriterDelete/@item.CategoryID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/writer/WriterUpdate/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="" class="btn btn-warning">Başlıklar</a></td>
+
+        </tr>
+    }
+</table>
+

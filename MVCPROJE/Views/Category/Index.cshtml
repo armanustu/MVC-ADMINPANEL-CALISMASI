@@ -1,0 +1,45 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+@*@using EntityLayer.Concrete
+@model List<Category>*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Hoş geldiniz @ViewBag.AdminName</h2>
+
+<h2>GetKategoriList</h2>
+@using (Html.BeginForm("Index", "Category",FormMethod.Post))
+{
+    <p>
+        Find by name: @Html.TextBox("categoryname")
+        <input type="submit" value="Ara" />
+    </p>
+}
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Durum</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CategoryID</td>
+            <td>@item.CategoryName</td>
+            <td>@item.CategoryDescription</td>
+            <td>@item.CategoryStatus</td>
+            <td><a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Pasif Yap</a></td>
+            <td><a href="/Category/CategoryUpdate/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
+            
+
+        </tr>
+    }
+</table>
+<a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
+
